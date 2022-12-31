@@ -51,19 +51,19 @@ resource "aws_route53_zone" "domain" {
   records = [element(aws_instance.ec2.*.private_ip, count.index)]
 }
 
-resource "null_resource"  "ansible-apply" {
-      count = length(var.instances)
-      provisioner "remote-exec" {
-      connection {
-      host = element(aws_instance.ec2.*.private_ip, count.index)
-      user = "root"
-      password = "DevOps321"
-      }
-      incline = [
-      "echo Hello"
-      ]
-      }
-    }
+#resource "null_resource"  "ansible-apply" {
+#      count = length(var.instances)
+#      provisioner "remote-exec" {
+#      connection {
+#      host = element(aws_instance.ec2.*.private_ip, count.index)
+#      user = "root"
+#      password = "DevOps321"
+#      }
+#      incline = [
+#      "echo Hello"
+#      ]
+#      }
+#    }
 
 
 
