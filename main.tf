@@ -71,7 +71,7 @@ resource "aws_route53_record" "dns-record" {
 #  type    = "A"
 #  ttl     = 30
 #  records = [element(aws_instance.ec2.*.private_ip, count.index)]
-}
+#}
 
 #resource "null_resource"  "ansible-apply" {
 #      count = length(var.instances)
