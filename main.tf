@@ -3,6 +3,7 @@ resource "aws_instance" "ec2" {
   ami = data.aws_ami.centos8.id
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
+  iam_instance_profile = "aws_ssm_dev_role"
   tags = {
     Name = element(var.instances, count.index)
   }
@@ -52,6 +53,9 @@ resource "aws_route53_record" "dns-record" {
 }
 
 resource "null_resource" "ansible-apply" {
+  triggers = {
+    abc = timestamp()
+  }
   count = length(var.instances)
   provisioner "remote-exec" {
     connection {
@@ -60,45 +64,11 @@ resource "null_resource" "ansible-apply" {
       password = "DevOps321"
       }
       inline = [
-      "echo Hello"
+      "labauto ansible",
+       "ansible-pull -i localhost, -U https://github.com/EswarAwsDevOps/roboshop-ansible roboshop.yml -e ROLE_NAME=${element(var.instances, count.index)} -e ENV=${var.ENV}"
       ]
       }
     }
-
-
-
-
-
-
-
-
-
-#data "aws_route53_zone" "domain" {
-#  name = var.DOMAIN_NAME
-#}
-#
-#resource "aws_route53_zone" "domain" {
-#  count   = length(var.instances)
-#  zone_id = data.aws_route53_zone.domain.zone_id
-#  name    = "${var.ENV}-${element(var.instances, count.index)}.${var.DOMAIN_NAME}"
-#  type    = "A"
-#  ttl     = 30
-#  records = [element(aws_instance.ec2.*.private_ip, count.index)]
-#}
-
-#resource "null_resource"  "ansible-apply" {
-#      count = length(var.instances)
-#      provisioner "remote-exec" {
-#      connection {
-#      host = element(aws_instance.ec2.*.private_ip, count.index)
-#      user = "root"
-#      password = "DevOps321"
-#      }
-#      incline = [
-#      "echo Hello"
-#      ]
-#      }
-#    }
 
 
 
