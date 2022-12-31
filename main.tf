@@ -59,7 +59,7 @@ resource "null_resource" "ansible-apply" {
       user = "root"
       password = "DevOps321"
       }
-      incline = [
+      inline = [
       "echo Hello"
       ]
       }
