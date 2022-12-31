@@ -72,6 +72,7 @@ resource "null_resource" "ansible-apply" {
 
 
 
+
 #data "aws_route53_zone" "domain" {
 #  name = var.DOMAIN_NAME
 #}
