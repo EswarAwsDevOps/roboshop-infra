@@ -43,7 +43,7 @@ data "aws_route53_zone" "domain" {
 
 resource "aws_route53_zone" "domain" {
   name    = "var.DOMAIN_NAME"
-  count   = length(length(var.instances)
+  count   = length(var.instances)
   zone_id = data.aws_route53_zone.domain.zone_id
   name    = "${var.ENV}-${element(var.instances, count.index)}.${var.DOMAIN_NAME}"
   type    = "A"
@@ -51,19 +51,19 @@ resource "aws_route53_zone" "domain" {
   records = [element(aws_instance.ec2.*.private_ip, count.index)]
 }
 
-#resource "null_resource"  "ansible-apply" {
-#      count = length(var.instances)
-#      provisioner "remote-exec" {
-#      connection {
-#      host = element(aws_instance.ec2.*.private_ip, count.index)
-#      user = "root"
-#      password = "DevOps321"
-#      }
-#      incline = [
-#      "echo Hello"
-#      ]
-#      }
-#    }
+resource "null_resource"  "ansible-apply" {
+      count = length(var.instances)
+      provisioner "remote-exec" {
+      connection {
+      host = element(aws_instance.ec2.*.private_ip, count.index)
+      user = "root"
+      password = "DevOps321"
+      }
+      incline = [
+      "echo Hello"
+      ]
+      }
+    }
 
 
 
