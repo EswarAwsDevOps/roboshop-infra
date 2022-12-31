@@ -10,6 +10,7 @@ instances = [
   "shipping",
   "mysql",
 
-
-
 ]
+
+DOMAIN_NAME = "aerdevops.online"
+ENV = "dev"
