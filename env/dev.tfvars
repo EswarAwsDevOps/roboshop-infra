@@ -1,16 +1,1 @@
-instances = [
-  "frontend",
-  "cart",
-  "catalogue",
-  "user",
-  "payment",
-  "mongodb",
-  "rabbitmq",
-  "redis",
-  "shipping",
-  "mysql",
-
-]
-
-DOMAIN_NAME = "aerdevops.online"
-ENV = "dev"
+vpc_cidr_block = "10.0.0.0/16"
