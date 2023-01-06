@@ -23,7 +23,8 @@ module "docdb" {
   engine                  = each.value.engine
   backup_retention_period = each.value.backup_retention_period
   preferred_backup_window = each.value.preferred_backup_window
-  skip_final_snapshot     = each.value.skip_final_snapshot
+  skip_final_snapshot     = each.value.skip_final_snapsho
+  storage_encrypted       = each.value.storage_encrypted
 
   vpc = module.vpc
 }
