@@ -1,4 +1,4 @@
-module "vpc" {
+  module "vpc" {
   source         = "github.com/EswarAwsDevOps/tf-module-vpc"
   env            = var.env
   default_vpc_id = var.default_vpc_id
@@ -13,7 +13,7 @@ module "vpc" {
   subnet_azs                 = each.value.subnet_azs
 }
 
-module "docdb" {
+  module "docdb" {
   source = "github.com/EswarAwsDevOps/tf-module-docdb"
   env            = var.env
   for_each                = var.docdb
@@ -22,9 +22,9 @@ module "docdb" {
   preferred_backup_window = each.value.backup_retention_period
   skip_final_snapshot     = each.value.skip_final_snapshot
 
-vpc = module.vpc
+  vpc = module.vpc
 }
 
-output "vpc" {
+  output "vpc" {
   value = "module.vpc"
 }
