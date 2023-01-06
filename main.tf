@@ -17,6 +17,7 @@ module "vpc" {
 module "docdb" {
   source                  = "github.com/EswarAwsDevOps/tf-module-docdb"
   env                     = var.env
+  kms_key_id              = var.kms_key_id
 
   for_each                = var.docdb
   engine                  = each.value.engine

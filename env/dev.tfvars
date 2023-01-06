@@ -6,6 +6,9 @@ default_vpc_id = "vpc-0eb06c62785facb36"
 default_vpc_cidr_block = "172.31.0.0/16"
 default_vpc_route_table = "rtb-09a1ef52562404cd4"
 
+##KMS Information
+kms_key_id = "arn:aws:kms:us-east-1:759016968779:key/1641cf84-b4e6-4c6e-9d8a-1f3df29a58fa"
+
 
 ## vpc
 
