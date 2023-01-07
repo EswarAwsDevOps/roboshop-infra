@@ -15,22 +15,22 @@ module "vpc" {
 }
 
 
-#module "docdb" {
-#  source                  = "github.com/EswarAwsDevOps/tf-module-docdb"
-#  env                     = var.env
-#  kms_key_id              = var.kms_key_id
-#
-#  for_each                = var.docdb
-#  engine                  = each.value.engine
-#  backup_retention_period = each.value.backup_retention_period
-#  preferred_backup_window = each.value.preferred_backup_window
-#  skip_final_snapshot     = each.value.skip_final_snapshot
-#  storage_encrypted       = each.value.storage_encrypted
-#  instance_count          = each.value.instance_count
-#  instance_class          = each.value.instance_class
-#
-#  vpc = module.vpc
-#}
+module "docdb" {
+  source                  = "github.com/EswarAwsDevOps/tf-module-docdb"
+  env                     = var.env
+  kms_key_id              = var.kms_key_id
+
+  for_each                = var.docdb
+  engine                  = each.value.engine
+  backup_retention_period = each.value.backup_retention_period
+  preferred_backup_window = each.value.preferred_backup_window
+  skip_final_snapshot     = each.value.skip_final_snapshot
+  storage_encrypted       = each.value.storage_encrypted
+  instance_count          = each.value.instance_count
+  instance_class          = each.value.instance_class
+
+  vpc = module.vpc
+}
 
 
 module "rds" {
