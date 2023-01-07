@@ -31,6 +31,8 @@ module "docdb" {
 
   vpc = module.vpc
 }
+
+
 module "rds" {
   source                  = "github.com/EswarAwsDevOps/tf-module-rds"
   env                     = var.env
@@ -42,6 +44,7 @@ module "rds" {
   preferred_backup_window = each.value.preferred_backup_window
   skip_final_snapshot     = each.value.skip_final_snapshot
   storage_encrypted       = each.value.storage_encrypted
+  engine_version          = each.value.engine_version
 
   vpc = module.vpc
 }
