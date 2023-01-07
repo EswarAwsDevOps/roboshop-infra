@@ -45,6 +45,8 @@ module "rds" {
   skip_final_snapshot     = each.value.skip_final_snapshot
   storage_encrypted       = each.value.storage_encrypted
   engine_version          = each.value.engine_version
+  database_name           = each.value.database_name
+
 
   vpc = module.vpc
 }
