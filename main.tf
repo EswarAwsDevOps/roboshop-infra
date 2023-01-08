@@ -64,7 +64,7 @@ module "elasticache" {
   engine_version          = each.value.engine_version
   node_type               = each.value.node_type
   num_cache_nodes         = each.value.num_cache_nodes
-  instance_class          =
+  instance_class          = each.value.instance_class
 
   vpc = module.vpc
 }
