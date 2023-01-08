@@ -68,3 +68,13 @@ module "elasticache" {
 
   vpc = module.vpc
 }
+module "rabbitmq" {
+  source                  = "github.com/EswarAwsDevOps/tf-module-rabbitmq"
+  env                     = var.env
+
+
+  for_each                = var.rabbitmq
+  instance_type           = each.value.instance_type
+
+  vpc = module.vpc
+}
