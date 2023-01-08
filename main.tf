@@ -71,10 +71,21 @@ module "elasticache" {
 module "rabbitmq" {
   source                  = "github.com/EswarAwsDevOps/tf-module-rabbitmq"
   env                     = var.env
-
-
   for_each                = var.rabbitmq
   instance_type           = each.value.instance_type
+
+  vpc = module.vpc
+}
+module "app" {
+  source                  = "github.com/EswarAwsDevOps/tf-module-mutable-app"
+  env                     = var.env
+  allow_ssh_cidr          = var.allow_ssh_cidr
+
+  for_each                = var.app
+  instance_type           = each.value.instance_type
+  instance_count          = each.value.instance_count
+  component               = each.value.component
+
 
   vpc = module.vpc
 }

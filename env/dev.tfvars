@@ -6,6 +6,7 @@ default_vpc_id = "vpc-0eb06c62785facb36"
 default_vpc_cidr_block = "172.31.0.0/16"
 default_vpc_route_table = "rtb-09a1ef52562404cd4"
 workstation_ip          = "172.31.6.237/32"
+allow_ssh_cidr          = ["172.31.6.237/32"]
 
 ##KMS Information
 kms_key_id = "arn:aws:kms:us-east-1:759016968779:key/1641cf84-b4e6-4c6e-9d8a-1f3df29a58fa"
@@ -60,5 +61,12 @@ elasticache = {
 rabbitmq = {
   dev = {
     instance_type = "t3.micro"
+  }
+}
+app = {
+  catalogue = {
+    component = "catalogue"
+    instance_type = "t3.micro"
+    instance_count = 1
   }
 }
