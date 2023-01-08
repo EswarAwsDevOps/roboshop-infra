@@ -59,7 +59,7 @@ module "elasticache" {
   env                     = var.env
 
 
-  for_each                = var.rds
+  for_each                = var.elasticache
   engine                  = each.value.engine
   engine_version          = each.value.engine_version
   node_type               = each.value.node_type
