@@ -64,6 +64,7 @@ module "elasticache" {
   engine_version          = each.value.engine_version
   node_type               = each.value.node_type
   num_cache_nodes         = each.value.num_cache_nodes
+  az_mode                 = each.value.az_mode
 
   vpc = module.vpc
 }
